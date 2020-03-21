@@ -18,7 +18,7 @@ public class Bank {
 			int choice = mainMenu();
 			if ((choice < 0) || (choice > 9)) {
 				System.out.println("Error , Please enter correct choice");
-				choice = input.nextInt();
+			try {	choice = input.nextInt();}catch(Exception e) {choice = 0;}
 			}
 
 			switch (choice) {
@@ -69,11 +69,6 @@ public class Bank {
 		input.close();
 	}
 
-	
-	
-	
-	
-	
 	// Update all account balance by adding interest to Savings account and
 	// Send letter to all current accounts which are in overdraft
 	private static void update() {
@@ -93,10 +88,6 @@ public class Bank {
 		input.next();
 	}
 
-	
-	
-	
-	
 //list all account , show available balance, overdraft limit and interest rates
 	private static void listAccount() {
 		for (Account acc : accountList) {
@@ -106,35 +97,34 @@ public class Bank {
 		}
 	}
 
-	
-	
-	
 	// deposit amount in accounts, update available balance
 	private static void depositInAccount() {
 		boolean found = false;
-		System.out.println("Enter the account Number");
-		int accNum = input.nextInt();
-		System.out.println("Enter the Deposit Amount");
-		double sum = input.nextDouble();
-		for (Account acc : accountList) {
-			if ((int) acc.getAccountNumber() == accNum) {
-				acc.deposit(sum);
-				found = true;
-				break;
+		try {
+			System.out.println("Enter the account Number");
+			int accNum = input.nextInt();
+			System.out.println("Enter the Deposit Amount");
+			double sum = input.nextDouble();
+			for (Account acc : accountList) {
+				if ((int) acc.getAccountNumber() == accNum) {
+					acc.deposit(sum);
+					found = true;
+					break;
+				}
 			}
+			if (!found) {
+				System.out.println("Account Number does not exist");
+			} else {
+				System.out.println("Amount Deposited");
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid Data");
+		} finally {
+			System.out.println("Enter y to continue");
+			input.next();
 		}
-		if (!found) {
-			System.out.println("Account Number does not exist");
-		} else {
-			System.out.println("Amount Deposited");
-		}
-		System.out.println("Enter y to continue");
-		input.next();
 	}
 
-	
-	
-	
 // close an account	if balance not > 0
 	private static void closeAccount() {
 		System.out.println("Enter the account Number to close");
@@ -163,9 +153,6 @@ public class Bank {
 		input.next();
 	}
 
-	
-	
-	
 	// add divident to all accounts
 	private static void addDividend() {
 
@@ -179,12 +166,10 @@ public class Bank {
 		input.next();
 	}
 
-	
-	
-	
-	//withdraw amount, give msg if overdraft limt reached, balance not enough 
+	// withdraw amount, give msg if overdraft limt reached, balance not enough
 	public static void withdrawAmt() {
 		boolean found = false;
+	try {	
 		System.out.println("Enter the account Number");
 		int accNum = input.nextInt();
 		System.out.println("Enter Withdrawl Amount");
@@ -213,18 +198,17 @@ public class Bank {
 		}
 		if (!found) {
 			System.out.println("Account Number does not exist");
-		}else {
+		} else {
 			System.out.println("withdrawl complete");
 		}
-		System.out.println("Enter y to continue");
-		input.next();
+	}catch(Exception e){
+		System.out.println("Invalid Input");
+	}finally
+		{System.out.println("Enter y to continue");
+		input.next();}
 	}
-	
-	
-	
-	
-	
-	//open new account
+
+	// open new account
 	private static void newAccount() {
 		System.out.println("Please Enter a new Account Number ");
 		int accountNumber = input.nextInt();
@@ -236,10 +220,7 @@ public class Bank {
 		input.next();
 	}
 
-	
-	
-	
-	//open new current account
+	// open new current account
 	private static void newCurrentAccount() {
 		System.out.println("Please Enter a new Account Number ");
 		int accountNumber = input.nextInt();
@@ -253,10 +234,7 @@ public class Bank {
 		input.next();
 	}
 
-	
-	
-	
-	//print main menu
+	// print main menu
 	private static int mainMenu() {
 		int choice = 0;
 		System.out.println("------------------------------");
@@ -280,10 +258,7 @@ public class Bank {
 		}
 		return choice;
 	}
-	
-	
-	
-	
+
 // open new Savings account
 	private static void newSavingsAccount() {
 
