@@ -23,7 +23,7 @@ public class BankMain {
 		System.out.println("Account Balance : " + bankObject.getAccBalance());
 		
 		//create another instance of bank object using parameterized constructor
-		Bank bankObject2 = new Bank(222222222222l,35000);
+		Bank bankObject2 = new Bank(2000000002l,35000);
 		
 		//print account info using getter after using setter to initialize values
 		System.out.println("Account Number : " + bankObject2.getAccNumber());
