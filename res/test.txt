@@ -1,0 +1,9 @@
+Assignment 03/Mar/2020
+
+1. Create a simple application and add a main class, main method. Create another class and
+   write a method to add if-else condition.
+
+
+2. Create a simple application and add a main class, main method. Create another class and
+   write a 3 methods to add for, while, do-while loop. Add local variable and instance variable.
+
