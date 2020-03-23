@@ -1,49 +1,47 @@
 package com.nttdata.nilofer.exceptionhandling;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class ValidateEmail {
 
-	
 	// Java program to validate email
-	
-		private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 
-		private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@"
+			+ "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
 
-		public static void emailValidator(String email) throws UserIdInvalidException {
+	private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
-			if (email == null) {
-				System.out.println("Please enter email");
-				email=" ";
-			}
+	public static void emailValidator(String email) throws UserIdInvalidException {
 
-			Matcher matcher = EMAIL_PATTERN.matcher(email);
-			boolean isValid = matcher.matches();
-			// Validate an email address
-						if (!isValid) {
-							throw new UserIdInvalidException("Invalid User Id. PLease enter Valid email");
-							//System.out.println("The email address " + userInput + " is valid");
-						}
-						else {
-							System.out.println("The email address " + email + " is valid");
-						}
+		if (email == null) {
+			System.out.println("Please enter email");
+			email = " ";
 		}
 
-		public static void main(String[] args)
-		{
-			Scanner input = new Scanner(System.in);
-			System.out.println("Enter Use Id");
-			String userInput = input.next();
-			try {
-				emailValidator(userInput);
-			} catch (UserIdInvalidException e) {
-				e.printStackTrace();
-			}
-			
-			input.close();
+		Matcher matcher = EMAIL_PATTERN.matcher(email);
+		boolean isValid = matcher.matches();
+		// Validate an email address
+		if (!isValid) {
+			throw new UserIdInvalidException("Invalid User Id. PLease enter Valid email");
+			// System.out.println("The email address " + userInput + " is valid");
+		} else {
+			System.out.println("The email address " + email + " is valid");
 		}
-	
+	}
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter Use Id");
+		String userInput = input.next();
+		try {
+			emailValidator(userInput);
+		} catch (UserIdInvalidException e) {
+			e.printStackTrace();
+		}
+
+		input.close();
+	}
+
 }
